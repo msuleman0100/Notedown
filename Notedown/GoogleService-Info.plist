@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1040386976173-gu0o7m7sjeoh574218o7etmid8kghtgq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1040386976173-gu0o7m7sjeoh574218o7etmid8kghtgq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBoE0xo8aKG1Q77nCPGfXTcQK42vq_N7gQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1040386976173</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.suleman.gigleelayout.Notedown</string>
+	<key>PROJECT_ID</key>
+	<string>notedown-ffffc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>notedown-ffffc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1040386976173:ios:00f326d21c0d3692715924</string>
+</dict>
+</plist>
