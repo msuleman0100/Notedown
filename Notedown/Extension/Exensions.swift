@@ -10,11 +10,12 @@ import UIKit
 
 extension UIViewController {
     
-    func moveTo(storyboard: String, identifier: String, viewController: UIViewController) {
-        let storyboard = UIStoryboard(name: storyboard, bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+    
+//    func moveTo(storyboard: String, identifier: String, viewController: UIViewController) {
+//        let storyboard = UIStoryboard(name: storyboard, bundle: nil)
+//        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     /*
      //Goto MainView
@@ -22,5 +23,4 @@ extension UIViewController {
      let vc = storyboard.instantiateViewController(withIdentifier: "HomeView") as! HomeController
      self.navigationController?.pushViewController(vc, animated: true)
      */
-    
 }

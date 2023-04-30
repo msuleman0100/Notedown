@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1810AFB929FE66170050CFAD /* AuthVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810AFB829FE66170050CFAD /* AuthVM.swift */; };
+		1810AFBD29FE6B170050CFAD /* HelperMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810AFBC29FE6B170050CFAD /* HelperMethods.swift */; };
+		1810AFBF29FE6CD80050CFAD /* HomeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810AFBE29FE6CD80050CFAD /* HomeVM.swift */; };
 		18D72C2829FE1C9200AC4E7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D72C2729FE1C9200AC4E7C /* AppDelegate.swift */; };
 		18D72C2A29FE1C9200AC4E7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D72C2929FE1C9200AC4E7C /* SceneDelegate.swift */; };
 		18D72C3129FE1C9400AC4E7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D72C3029FE1C9400AC4E7C /* Assets.xcassets */; };
@@ -22,6 +25,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1810AFB829FE66170050CFAD /* AuthVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthVM.swift; sourceTree = "<group>"; };
+		1810AFBC29FE6B170050CFAD /* HelperMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperMethods.swift; sourceTree = "<group>"; };
+		1810AFBE29FE6CD80050CFAD /* HomeVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVM.swift; sourceTree = "<group>"; };
 		18D72C2429FE1C9200AC4E7C /* Notedown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Notedown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D72C2729FE1C9200AC4E7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18D72C2929FE1C9200AC4E7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -52,6 +58,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1810AFBA29FE66340050CFAD /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1810AFB829FE66170050CFAD /* AuthVM.swift */,
+				1810AFBE29FE6CD80050CFAD /* HomeVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1810AFBB29FE6AF70050CFAD /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1810AFBC29FE6B170050CFAD /* HelperMethods.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		18D72C1B29FE1C9200AC4E7C = {
 			isa = PBXGroup;
 			children = (
@@ -73,10 +96,12 @@
 		18D72C2629FE1C9200AC4E7C /* Notedown */ = {
 			isa = PBXGroup;
 			children = (
-				18D72C4D29FE37F800AC4E7C /* Extension */,
 				18D72C4029FE226F00AC4E7C /* Views */,
 				18D72C3F29FE226200AC4E7C /* Controllers */,
+				1810AFBA29FE66340050CFAD /* ViewModels */,
 				18D72C4129FE228000AC4E7C /* Models */,
+				18D72C4D29FE37F800AC4E7C /* Extension */,
+				1810AFBB29FE6AF70050CFAD /* Utilities */,
 				18D72C2729FE1C9200AC4E7C /* AppDelegate.swift */,
 				18D72C2929FE1C9200AC4E7C /* SceneDelegate.swift */,
 				18D72C3029FE1C9400AC4E7C /* Assets.xcassets */,
@@ -257,9 +282,12 @@
 			files = (
 				18D72C4329FE23C200AC4E7C /* HomeController.swift in Sources */,
 				18D72C2829FE1C9200AC4E7C /* AppDelegate.swift in Sources */,
+				1810AFBD29FE6B170050CFAD /* HelperMethods.swift in Sources */,
+				1810AFBF29FE6CD80050CFAD /* HomeVM.swift in Sources */,
 				18D72C3E29FE225D00AC4E7C /* AuthController.swift in Sources */,
 				18D72C4929FE241100AC4E7C /* UserModel.swift in Sources */,
 				18D72C4F29FE37F800AC4E7C /* Exensions.swift in Sources */,
+				1810AFB929FE66170050CFAD /* AuthVM.swift in Sources */,
 				18D72C2A29FE1C9200AC4E7C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
