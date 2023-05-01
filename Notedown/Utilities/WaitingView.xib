@@ -12,8 +12,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WaitingView" customModule="Notedown" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="dSq-1l-wTR" id="2t4-dS-Fqs"/>
-                <outlet property="activityIndicatorBackgroundView" destination="RqW-Dr-qGh" id="dc9-wZ-EuQ"/>
-                <outlet property="backgroundView" destination="Xap-I0-okr" id="RDW-TN-sT3"/>
+                <outlet property="activityIndicatorBackgroundView" destination="RqW-Dr-qGh" id="yaa-sb-SSm"/>
+                <outlet property="backgroundView" destination="qTa-aU-nqz" id="6Qr-z5-jYC"/>
                 <outlet property="loadingBackgroundView" destination="qTa-aU-nqz" id="LyH-oK-HK5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

@@ -14,6 +14,14 @@ class WaitingView: UIViewController {
     @IBOutlet weak var loadingBackgroundView: UIView!
     @IBOutlet weak var activityIndicatorBackgroundView: UIView!
     
+    init() {
+        super.init(nibName: "WaitingView", bundle: nil)
+        self.modalPresentationStyle = .overCurrentContext
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +43,7 @@ class WaitingView: UIViewController {
             UIView.animate(withDuration: 0.1, delay: 0) { [weak self] in
                 self?.backgroundView.alpha = 1
                 self?.loadingBackgroundView.alpha = 1
+                self?.activityIndicator.startAnimating()
             }
         }
     }
@@ -44,6 +53,7 @@ class WaitingView: UIViewController {
             self?.backgroundView.alpha = 0
             self?.loadingBackgroundView.alpha = 0
         } completion: { _ in
+            self.activityIndicator.stopAnimating()
             self.dismiss(animated: false)
             self.removeFromParent()
         }
