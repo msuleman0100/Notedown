@@ -12,58 +12,58 @@ import FirebaseDatabase
 class AuthVM {
     
     //MARK: - Properties
-    
     //MARK: - Login
-    func loginUser(email: String, password: String) -> Bool {
-        var loginSuccess = false
+    func loginUser(email: String, password: String,
+                   completion: @escaping (Bool, String?) -> Void) {
+        print("\nEntered to loginUser func...")
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+            print("\nEntered to sinIn func...")
             if error == nil {
-                if authResult != nil  {
-                    guard let name = authResult?.user.displayName else { return }
-                    guard let email = authResult?.user.email else { return }
-                    let currentUser = UserModel(name: name, email: email)
-                    saveUserToDefaults(currentUser)
-                    loginSuccess = true
-                    
-                } else { loginSuccess = false }
+                if let uID = authResult?.user.uid {
+                    self.fetchUserFromFirebase(uID: uID) { userName in
+                        print("\nEntered to fetchUserFromFirebase...")
+                        let currentUser = UserModel(name: userName, email: email)
+                        saveUserToDefaults(currentUser)
+                        completion(true, nil)
+                    }
+                }
             } else {
-                print("\nLogin Error -> \n\(error.debugDescription)")
+                completion(false, error?.localizedDescription ?? "")
+                print("\nLogin Error -> \n\(String(describing: error?.localizedDescription))")
             }
         }
-        
-        return loginSuccess
     }
     
     //MARK: - Register
-    func registerUser(email: String, password: String) -> Bool {
-        var registerSuccess = false
+    func registerUser(email: String, password: String, name: String, completion: @escaping (Bool, String?) -> Void) {
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if error == nil {
-                if authResult != nil  {
-                    guard let name = authResult?.user.displayName else { return }
-                    guard let email = authResult?.user.email else { return }
-                    //guard let uID = authResult?.user.uid else { return }
-                    let currentUser = UserModel(name: name, email: email)
-                    //self.saveUserToFirebaseStorag(uID: uID, name: name)
-                    saveUserToDefaults(currentUser)
-                    registerSuccess = true
-                    
-                } else { registerSuccess = false }
+                guard let uID = authResult?.user.uid else { return }
+                let currentUser = UserModel(name: name, email: email)
+                self.saveUserToFirebaseStorag(uID: uID, name: name)
+                saveUserToDefaults(currentUser)
+                completion(true, nil)
             } else {
-                print("\nRegister Error -> \n\(error.debugDescription)")
+                completion(false, error?.localizedDescription)
             }
         }
-        return registerSuccess
     }
     
     func saveUserToFirebaseStorag(uID: String, name: String) {
-        var dbRef = Database.database().reference()
-        let params: [String: Any] = [
-            "name": name
-            ]
+        let dbRef = Database.database().reference()
+        let params: [String: Any] = [ "name": name ]
         dbRef.child("Users").child("\(uID)").updateChildValues(params)
     }
     
+    func fetchUserFromFirebase(uID: String, completion: @escaping (String) -> Void) {
+        let dbRef = Database.database().reference()
+        let user = dbRef.child("Users").child("\(uID)")
+        user.observe(.value) { dataSnapshot in
+            let name = dataSnapshot.childSnapshot(forPath: "name").value as? String ?? "Unknown"
+            print("\nName -> \(name)")
+            completion(name)
+        }
+    }
     
     //MARK: - Forgot Password
     func resetPassword(email: String) {

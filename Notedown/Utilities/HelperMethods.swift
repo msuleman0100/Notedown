@@ -11,6 +11,7 @@ import Foundation
 func saveUserToDefaults(_ userData: UserModel) {
     if let encoded = try? JSONEncoder().encode(userData) {
         UserDefaults.standard.set(encoded, forKey: "currentUser")
+        print("\nUser profile saved...")
     } else {
         print("\nCouldn't decode and save user object to UserDefaults\n")
     }

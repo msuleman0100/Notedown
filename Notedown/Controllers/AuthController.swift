@@ -25,39 +25,70 @@ class AuthController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+//        loginemailField.text = "sa6@sa.com"
+//        loginPasswordField.text = "112233"
     }
    
     
     @IBAction func signInActoin(_ sender: Any) {
-        //moveTo(storyboard: "AuthView", identifier: "SignupView", viewController: self)
-        DispatchQueue.main.async { [weak self] in
-            if self?.loginemailField.text != nil && self?.loginPasswordField.text != nil {
-                let email = self?.loginemailField.text ?? ""
-                let password = self?.loginPasswordField.text ?? ""
-                let loginSuccess = self?.authVM.loginUser(email: email, password: password)
-                if loginSuccess ?? false {
-                    self?.navigateTo(storyboard: "HomeView", identifier: "HomeView")
-                } else {  print("\nCouldn't login...\n") }
-            
-            } else { print("\nPlease enter email address & password to continue...\n") }
+        let email = loginemailField.text ?? ""
+        let password = loginPasswordField.text ?? ""
+        
+        let waitingView = WaitingView()
+        if email != "" && password != "" {
+            waitingView.show(sender: self)
+            authVM.loginUser(email: email, password: password) { loginSuccess,error   in
+                if loginSuccess {
+                    print("\ntest done")
+                    waitingView.hide()
+                    self.navigateTo(storyboard: "HomeView", identifier: "HomeView")
+                } else {
+                    waitingView.hide()
+                    let alertView = PopupView()
+                    alertView.alertTitle = "Signin Failed!"
+                    alertView.alertDesc = "Couldn't signin reason '\(error ?? "Unknown")'"
+                    alertView.appear(sender: self)
+                }
+            }
+        } else {
+            waitingView.hide()
+            let alertView = PopupView()
+            alertView.alertTitle = "Signin Failed!"
+            alertView.appear(sender: self)
         }
     }
     
     @IBAction func registerAction(_ sender: Any) {
         
-        DispatchQueue.main.async { [weak self] in
-            let name = self?.regNameField.text ?? ""
-            let email = self?.regEmailField.text ?? ""
-            let password = self?.regPasswordField.text ?? ""
-            if !name.isEmpty && !email.isEmpty && !password.isEmpty {
-                let loginSuccess = self?.authVM.registerUser(email: email, password: password)
-                if loginSuccess ?? false {
-                    self?.navigateTo(storyboard: "HomeView", identifier: "HomeView")
-                    
-                } else { print("\nCouldn't register...\n") }
-                
-            } else { print("\nPlease enter email address & password to continue...\n") }
-        }
+
+        let name = regNameField.text ?? ""
+            let email = regEmailField.text ?? ""
+            let password = regPasswordField.text ?? ""
+        
+            let waitingView = WaitingView()
+            if name != "" && email != "" && password != "" {
+                waitingView.show(sender: self)
+                authVM.registerUser(email: email, password: password,
+                                    name: name, completion: { loginSuccess, error in
+                    if loginSuccess {
+                        print("\nReggisstered suuccess......")
+                        waitingView.hide()
+                        self.navigateTo(storyboard: "HomeView", identifier: "HomeView")
+                    } else {
+                        waitingView.hide()
+                        let alertView = PopupView()
+                        alertView.alertTitle = "Signin Failed!"
+                        alertView.alertDesc = "Couldn't registered reason '\(error ?? "Unknown")'"
+                        alertView.appear(sender: self)
+                    }
+                })
+            } else {
+                waitingView.hide()
+                let alertView = PopupView()
+                alertView.alertTitle = "Register Failed!"
+            }
+     
      
     }
     
