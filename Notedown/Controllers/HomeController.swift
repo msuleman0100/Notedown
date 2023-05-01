@@ -24,22 +24,23 @@ class HomeController: UIViewController {
     private func setupUserProfile() {
         let profileData = fetchUserFromDefaults()
         if let profile = profileData {
-            nameLabel.text = profile.email
+            nameLabel.text = profile.name
             emailLabel.text = profile.email
-            emailLabel.text = "Hello test"
         } else {
             print("\nUser profile data not found!\n")
         }
     }
     
     @IBAction func logoutAction(_ sender: Any) {
-        let logoutSuccess = homeVM.logoutUser()
-        
-        print("\nLogout Suuccess -> \(logoutSuccess)\n")
-        if logoutSuccess {
-            navigateTo(storyboard: "AuthView", identifier: "LoginView")
-        } else {
-            print("\nCouldn't logout, please try again....\n")
+        DispatchQueue.main.async { [weak self] in
+            let logoutSuccess = self?.homeVM.logoutUser()
+            
+            print("\nLogout Suuccess -> \(logoutSuccess)\n")
+            if logoutSuccess ?? false {
+                self?.navigateTo(storyboard: "AuthView", identifier: "LoginView")
+            } else {
+                print("\nCouldn't logout, please try again....\n")
+            }
         }
     }
     

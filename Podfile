@@ -7,6 +7,6 @@ target 'Notedown' do
 
   # Pods for Notedown
   pod 'FirebaseAuth'
-  pod 'FirebaseStorage'
+  pod 'FirebaseDatabase'
 
 end

@@ -9,9 +9,16 @@ import UIKit
 
 class AuthController: UIViewController {
     
-    @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var passwordField: UITextField!
+    //login proprties...
+    @IBOutlet weak var loginemailField: UITextField!
+    @IBOutlet weak var loginPasswordField: UITextField!
     
+    //register properties...
+    @IBOutlet weak var regNameField: UITextField!
+    @IBOutlet weak var regPasswordField: UITextField!
+    @IBOutlet weak var regEmailField: UITextField!
+    
+    //AuthVM reference
     let authVM = AuthVM()
     
     override func viewDidLoad() {
@@ -23,23 +30,36 @@ class AuthController: UIViewController {
     
     @IBAction func signInActoin(_ sender: Any) {
         //moveTo(storyboard: "AuthView", identifier: "SignupView", viewController: self)
-        if emailField.text != nil && passwordField.text != nil {
-            let email = emailField.text ?? ""
-            let password = passwordField.text ?? ""
-            let loginSuccess = authVM.loginUser(email: email, password: password)
-            if loginSuccess {
-                saveUserToDefaults(.init(name: email, email: password))
-                navigateTo(storyboard: "HomeView", identifier: "HomeView")
-            } else {
-                print("\nCouldn't login...\n")
-            }
-        
-        } else {
-            print("\nPlease enter email address & password to continue...\n")
+        DispatchQueue.main.async { [weak self] in
+            if self?.loginemailField.text != nil && self?.loginPasswordField.text != nil {
+                let email = self?.loginemailField.text ?? ""
+                let password = self?.loginPasswordField.text ?? ""
+                let loginSuccess = self?.authVM.loginUser(email: email, password: password)
+                if loginSuccess ?? false {
+                    self?.navigateTo(storyboard: "HomeView", identifier: "HomeView")
+                } else {  print("\nCouldn't login...\n") }
+            
+            } else { print("\nPlease enter email address & password to continue...\n") }
         }
     }
     
-    @IBAction func registerAction(_ sender: Any) { }
+    @IBAction func registerAction(_ sender: Any) {
+        
+        DispatchQueue.main.async { [weak self] in
+            let name = self?.regNameField.text ?? ""
+            let email = self?.regEmailField.text ?? ""
+            let password = self?.regPasswordField.text ?? ""
+            if !name.isEmpty && !email.isEmpty && !password.isEmpty {
+                let loginSuccess = self?.authVM.registerUser(email: email, password: password)
+                if loginSuccess ?? false {
+                    self?.navigateTo(storyboard: "HomeView", identifier: "HomeView")
+                    
+                } else { print("\nCouldn't register...\n") }
+                
+            } else { print("\nPlease enter email address & password to continue...\n") }
+        }
+     
+    }
     
  
     //Navigator

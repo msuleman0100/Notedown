@@ -15,13 +15,8 @@ class HomeVM {
         var logoutSuccess = false
             let firebaseAuth = Auth.auth()
             do {
-                
-                
                 try firebaseAuth.signOut()
-                
-                
                 removeUserFromDefaults()
-                
                 logoutSuccess = true
             } catch let signOutError as NSError {
                 print("\nLogout Error -> \n\(signOutError.debugDescription)")

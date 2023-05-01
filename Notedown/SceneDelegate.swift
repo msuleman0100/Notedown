@@ -24,12 +24,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let storyboard = UIStoryboard(name: "AuthView", bundle: nil)
             initialVC = storyboard.instantiateViewController(withIdentifier: "LoginView")
         }else{
-            print("\nUser-email -> \(user?.email)\n")
             let storyboard = UIStoryboard(name: "HomeView", bundle: nil)
             initialVC = storyboard.instantiateViewController(withIdentifier: "HomeView")
         }
-        
-        self.window?.rootViewController = UINavigationController(rootViewController: initialVC)
+        let navigationVC = UINavigationController(rootViewController: initialVC)
+        navigationVC.isNavigationBarHidden = true
+        self.window?.rootViewController = navigationVC
         self.window?.makeKeyAndVisible()
     }
     

@@ -7,7 +7,7 @@
 
 import Foundation
 import FirebaseAuth
-import FirebaseStorage
+import FirebaseDatabase
 
 class AuthVM {
     
@@ -42,7 +42,9 @@ class AuthVM {
                 if authResult != nil  {
                     guard let name = authResult?.user.displayName else { return }
                     guard let email = authResult?.user.email else { return }
+                    //guard let uID = authResult?.user.uid else { return }
                     let currentUser = UserModel(name: name, email: email)
+                    //self.saveUserToFirebaseStorag(uID: uID, name: name)
                     saveUserToDefaults(currentUser)
                     registerSuccess = true
                     
@@ -54,14 +56,19 @@ class AuthVM {
         return registerSuccess
     }
     
+    func saveUserToFirebaseStorag(uID: String, name: String) {
+        var dbRef = Database.database().reference()
+        let params: [String: Any] = [
+            "name": name
+            ]
+        dbRef.child("Users").child("\(uID)").updateChildValues(params)
+    }
+    
     
     //MARK: - Forgot Password
     func resetPassword(email: String) {
         
     }
     
-    //MARK: Loggout and remove user profile
-    func saveUser(name: String) {
-        
-    }
+
 }
