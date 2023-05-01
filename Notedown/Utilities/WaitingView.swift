@@ -32,7 +32,7 @@ class WaitingView: UIViewController {
 
     func show(sender: UIViewController) {
         sender.present(self, animated: true) {
-            UIView.animate(withDuration: 0.2, delay: 0) { [weak self] in
+            UIView.animate(withDuration: 0.1, delay: 0) { [weak self] in
                 self?.backgroundView.alpha = 1
                 self?.loadingBackgroundView.alpha = 1
             }
@@ -40,7 +40,7 @@ class WaitingView: UIViewController {
     }
     
     func hide() {
-        UIView.animate(withDuration: 0.2, delay: 0) { [weak self] in
+        UIView.animate(withDuration: 0.1, delay: 0) { [weak self] in
             self?.backgroundView.alpha = 0
             self?.loadingBackgroundView.alpha = 0
         } completion: { _ in
